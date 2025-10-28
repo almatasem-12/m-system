@@ -1,0 +1,47 @@
+﻿[
+  // --- إضافة مستخدمين افتراضيين إذا لم يوجدوا ---
+  "function",
+  "initUsers()",
+  {
+    "let" "users",
+    "=" "readUsers();",
+    "if" "(!users.find(u",
+    "=>" "u.username",
+    "===" "'admin'))",
+    {
+      "const" "adminPasswordHash",
+      "=" "bcrypt.hashSync('admin123'",
+      "10);" // كلمة مرور الأدمن
+      "users.push(",
+      {
+        "id": 1,
+        "username": "admin",
+        "passwordHash": "adminPasswordHash",
+        "role": "admin"
+      }
+      ");",
+    },
+    "if" "(!users.find(u",
+    "=>" "u.username",
+    "===" "'manager'))",
+    {
+      "const" "managerPasswordHash",
+      "=" "bcrypt.hashSync('manager123'",
+      "10);" // كلمة مرور مدير المشروع
+      "users.push(",
+      {
+        "id": 2,
+        "username": "manager",
+        "passwordHash": "managerPasswordHash",
+        "role": "projectManager",
+        "projectId": null
+      }
+      ");",
+      // يمكن وضع projectId خاص بالمشروع الذي يديره
+    },
+    "writeUsers(users);"
+  },
+
+  "initUsers();"
+
+]
